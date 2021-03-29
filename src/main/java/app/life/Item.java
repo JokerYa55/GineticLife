@@ -1,7 +1,8 @@
 package app.life;
 
 import java.awt.Color;
-import lombok.AllArgsConstructor;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Data;
 
 /**
@@ -9,7 +10,13 @@ import lombok.Data;
  * @author Vasiliy.Andricov
  */
 @Data
-@AllArgsConstructor
 public class Item {
-    Color color;    
+
+    private Color color;
+    private final List<Point> pointList = new ArrayList<>();
+
+    public Item(Color color) {
+        this.color = color;
+    }
+
 }

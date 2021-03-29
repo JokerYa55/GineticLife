@@ -1,7 +1,9 @@
 package app.life;
 
 import java.awt.Color;
+import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -27,7 +29,7 @@ public class LifeWorld {
 
     public Item[][] nextStep() {
         if (stepNum == 0) {
-            initLife();
+            initLife();            
         } else {
             nextWorldStep();
         };
@@ -46,18 +48,36 @@ public class LifeWorld {
                 }
             }
         }
+        updateWorldPoint();
     }
 
     private void nextWorldStep() {
         System.out.printf("Шаг игры %d\n", stepNum);
+        updateWorldPoint();
+    }
+
+    private void updateWorldPoint() {
         for (int i = 0; i < worldWigth; i++) {
-            
+            for (int j = 0; j < worldHeigth; j++) {
+                List<Point> pointList = Stream.of(new Point(i - 1, j - 1), new Point(i - 1, j), new Point(i - 1, j + 1),
+                        new Point(i, j - 1), new Point(i, j + 1),
+                        new Point(i + 1, j - 1), new Point(i + 1, j), new Point(i + 1, j + 1)
+                )
+                        .filter(t -> ((t.getI() >= 0) && (t.getJ() >= 0) && (t.getI() < worldWigth) && (t.getJ() < worldHeigth)))
+                        .map(t -> {
+                            t.setColor(arrayWorld[t.getI()][t.getJ()].getColor());
+                            return t;
+                        })
+                        .collect(Collectors.toList());
+                arrayWorld[i][j].getPointList().addAll(pointList);
+            }
         }
     }
 
-    private class Points{
-        Color color;
-        int index;
-    }
+    /**
+     * 
+     */
+    private void updateWorldLife(){
     
+    }
 }
