@@ -1,5 +1,7 @@
 package app;
 
+import app.life.Item;
+import app.life.LifeWorld;
 import java.awt.Graphics;
 
 /**
@@ -7,9 +9,28 @@ import java.awt.Graphics;
  * @author Vasiliy.Andricov
  */
 public class MainForm extends javax.swing.JDialog {
+    
+    private static final int WORLD_WIGTH = 80;
+    private static final int WORLD_HEIGTH = 40;
+    private static final int WORLD_ITEM_WIGTH = 8;
+    private static final int WORLD_ITEM_HEIGTH = 8;
+    
+    private final LifeWorld lifeWorld = new LifeWorld(WORLD_WIGTH, WORLD_HEIGTH, WORLD_ITEM_WIGTH, WORLD_ITEM_HEIGTH);
+    
+    private void drawWorld(Item[][] arrayWorld, Graphics g) {
+        for (int i = 0; i < WORLD_WIGTH; i++) {
+            for (int j = 0; j < WORLD_HEIGTH; j++) {
+                g.setColor(arrayWorld[i][j].getColor());
+                g.fillRect(i * 10 + 4, j * 10 + 4, WORLD_ITEM_WIGTH, WORLD_ITEM_HEIGTH);
+            }
+        }
+    }
 
     /**
      * Creates new form MainForm
+     *
+     * @param parent
+     * @param modal
      */
     public MainForm(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -107,16 +128,16 @@ public class MainForm extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Graphics g = jPanel1.getGraphics();
-        g.drawString("test", 10, 10);
+        drawWorld(lifeWorld.nextStep(), g);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**    
-    *
+    /**
+     *
      * @param evt
      */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Graphics g = jPanel1.getGraphics();
-        g.clearRect(0, 0, jPanel1.getWidth(), jPanel1.getHeight());    
+        g.clearRect(0, 0, jPanel1.getWidth(), jPanel1.getHeight());
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
