@@ -2,6 +2,7 @@ package app.life;
 
 import java.awt.Color;
 import java.util.Random;
+import java.util.stream.Stream;
 
 /**
  *
@@ -28,7 +29,7 @@ public class LifeWorld {
         if (stepNum == 0) {
             initLife();
         } else {
-            initLife();
+            nextWorldStep();
         };
         stepNum++;
         return this.arrayWorld;
@@ -47,4 +48,16 @@ public class LifeWorld {
         }
     }
 
+    private void nextWorldStep() {
+        System.out.printf("Шаг игры %d\n", stepNum);
+        for (int i = 0; i < worldWigth; i++) {
+            
+        }
+    }
+
+    private class Points{
+        Color color;
+        int index;
+    }
+    
 }
