@@ -11,14 +11,14 @@ import java.util.stream.Stream;
  * @author Vasiliy.Andricov
  */
 public class LifeWorld {
-    
+
     private final int worldWigth;
     private final int worldHeigth;
     private final Item[][] arrayWorld;
     private final int itemWigth;
     private final int itemHeigth;
     private long stepNum = 0;
-    
+
     public LifeWorld(int worldWigth, int worldHeigth, int itemWigth, int itemHeigth) {
         this.worldWigth = worldWigth;
         this.worldHeigth = worldHeigth;
@@ -86,27 +86,36 @@ public class LifeWorld {
                 long lifePoint = arrayWorld[i][j].getPointList()
                         .stream()
                         .filter(t -> arrayWorld[t.getI()][t.getJ()].getColor() == Color.GREEN)
-                        .count();
+                        .count();                
                 if (lifePoint > 3) {
                     arrayWorld[i][j].setColor(Color.GRAY);
-                } else if (lifePoint>2){
+                } else if (lifePoint == 2) {
                     // Рождаем нового
                     Point newLifePoint = arrayWorld[i][j].getPointList()
-                        .stream()
-                        .filter(t -> arrayWorld[t.getI()][t.getJ()].getColor() == Color.GRAY)
-                        .findAny().get();
-                    System.out.println("Элемент = " + newLifePoint);
+                            .stream()
+                            .filter(t -> arrayWorld[t.getI()][t.getJ()].getColor() == Color.GRAY)
+                            .findAny().get();
+                    //System.out.println("Элемент = " + newLifePoint);
                     arrayWorld[newLifePoint.getI()][newLifePoint.getJ()].setColor(Color.GREEN);
-                    
-                }               
+                }
+                lifePoint = arrayWorld[i][j].getPointList()
+                        .stream()
+                        .filter(t -> arrayWorld[t.getI()][t.getJ()].getColor() == Color.GREEN)
+                        .peek(System.out::println)
+                        .count();
+                System.out.printf("i = %d  j = %d Кол - во живых = %d\n", i, j, lifePoint);
             }
         }
     }
 
     /**
-     *
+     * 
      */
-    private void updateWorldLife() {
-        
+    public void printWorld() {
+        for (int i = 0; i < worldWigth; i++) {
+            for (int j = 0; j < worldHeigth; j++) {
+                System.out.printf("i = %d  j = %d point = %s\n", i, j, arrayWorld[i][j].getPointList());
+            }
+        }
     }
 }
