@@ -18,7 +18,6 @@ public class MainForm extends javax.swing.JDialog {
     private final LifeWorld lifeWorld = new LifeWorld(WORLD_WIGTH, WORLD_HEIGTH, WORLD_ITEM_WIGTH, WORLD_ITEM_HEIGTH);
 
     private void drawWorld(Item[][] arrayWorld, Graphics g) {
-        lifeWorld.printWorld();
         for (int i = 0; i < WORLD_WIGTH; i++) {
             for (int j = 0; j < WORLD_HEIGTH; j++) {
                 g.setColor(arrayWorld[i][j].getColor());
