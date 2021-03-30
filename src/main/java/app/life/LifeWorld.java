@@ -88,6 +88,7 @@ public class LifeWorld {
                         .filter(t -> arrayWorld[t.getI()][t.getJ()].getColor() == Color.GREEN)
                         .count();                
                 if (lifePoint > 3) {
+                    System.out.printf("i = %d  j = %d  DEAD!\n", i, j);
                     arrayWorld[i][j].setColor(Color.GRAY);
                 } else if (lifePoint == 2) {
                     // Рождаем нового
@@ -95,7 +96,7 @@ public class LifeWorld {
                             .stream()
                             .filter(t -> arrayWorld[t.getI()][t.getJ()].getColor() == Color.GRAY)
                             .findAny().get();
-                    //System.out.println("Элемент = " + newLifePoint);
+                    System.out.printf("i = %d  j = %d  LIFE!\n", i, j);
                     arrayWorld[newLifePoint.getI()][newLifePoint.getJ()].setColor(Color.GREEN);
                 }
                 lifePoint = arrayWorld[i][j].getPointList()
