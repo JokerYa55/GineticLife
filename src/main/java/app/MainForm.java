@@ -10,8 +10,8 @@ import java.awt.Graphics;
  */
 public class MainForm extends javax.swing.JDialog {
     
-    private static final int WORLD_WIGTH = 80;
-    private static final int WORLD_HEIGTH = 40;
+    private static final int WORLD_WIGTH = 160;
+    private static final int WORLD_HEIGTH = 90;
     private static final int WORLD_ITEM_WIGTH = 8;
     private static final int WORLD_ITEM_HEIGTH = 8;
     
@@ -60,7 +60,7 @@ public class MainForm extends javax.swing.JDialog {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 804, Short.MAX_VALUE)
+            .addGap(0, 1415, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,7 +99,7 @@ public class MainForm extends javax.swing.JDialog {
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2)
-                .addContainerGap(435, Short.MAX_VALUE))
+                .addContainerGap(658, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

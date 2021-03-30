@@ -29,7 +29,7 @@ public class LifeWorld {
 
     public Item[][] nextStep() {
         if (stepNum == 0) {
-            initLife();            
+            initLife();
         } else {
             nextWorldStep();
         };
@@ -53,7 +53,6 @@ public class LifeWorld {
 
     private void nextWorldStep() {
         System.out.printf("Шаг игры %d\n", stepNum);
-        updateWorldPoint();
     }
 
     private void updateWorldPoint() {
@@ -64,10 +63,6 @@ public class LifeWorld {
                         new Point(i + 1, j - 1), new Point(i + 1, j), new Point(i + 1, j + 1)
                 )
                         .filter(t -> ((t.getI() >= 0) && (t.getJ() >= 0) && (t.getI() < worldWigth) && (t.getJ() < worldHeigth)))
-                        .map(t -> {
-                            t.setColor(arrayWorld[t.getI()][t.getJ()].getColor());
-                            return t;
-                        })
                         .collect(Collectors.toList());
                 arrayWorld[i][j].getPointList().addAll(pointList);
             }
@@ -75,9 +70,9 @@ public class LifeWorld {
     }
 
     /**
-     * 
+     *
      */
-    private void updateWorldLife(){
-    
+    private void updateWorldLife() {
+
     }
 }

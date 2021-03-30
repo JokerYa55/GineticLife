@@ -14,11 +14,5 @@ public class Point {
 
     private int i;
     private int j;
-    private Color color;
-
-    public Point(int i, int j) {
-        this.i = i;
-        this.j = j;
-    }
 
 }
