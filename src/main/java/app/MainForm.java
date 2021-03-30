@@ -10,18 +10,19 @@ import java.awt.Graphics;
  */
 public class MainForm extends javax.swing.JDialog {
 
-    private static final int WORLD_WIGTH = 5;
-    private static final int WORLD_HEIGTH = 5;
+    private static final int WORLD_WIGTH = 100;
+    private static final int WORLD_HEIGTH = 80;
     private static final int WORLD_ITEM_WIGTH = 8;
     private static final int WORLD_ITEM_HEIGTH = 8;
 
     private final LifeWorld lifeWorld = new LifeWorld(WORLD_WIGTH, WORLD_HEIGTH, WORLD_ITEM_WIGTH, WORLD_ITEM_HEIGTH);
 
     private void drawWorld(Item[][] arrayWorld, Graphics g) {
+        lifeWorld.printWorld();
         for (int i = 0; i < WORLD_WIGTH; i++) {
             for (int j = 0; j < WORLD_HEIGTH; j++) {
                 g.setColor(arrayWorld[i][j].getColor());
-                g.fillRect(i * 15 + 4, j * 15 + 4, WORLD_ITEM_WIGTH, WORLD_ITEM_HEIGTH);
+                g.fillRect(j * 15 + 4, i * 15 + 4, WORLD_ITEM_WIGTH, WORLD_ITEM_HEIGTH);
             }
         }
     }

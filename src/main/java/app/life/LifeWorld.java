@@ -86,9 +86,15 @@ public class LifeWorld {
                 long lifePoint = arrayWorld[i][j].getPointList()
                         .stream()
                         .filter(t -> arrayWorld[t.getI()][t.getJ()].getColor() == Color.GREEN)
-                        .count();                
+                        .count();
+                // Умирает все соседи
                 if (lifePoint > 3) {
-                    System.out.printf("i = %d  j = %d  DEAD!\n", i, j);
+                    arrayWorld[i][j].getPointList()
+                        .stream()
+                        .filter(t -> arrayWorld[t.getI()][t.getJ()].getColor() == Color.GREEN)
+                            .forEach((t) -> {
+                                arrayWorld[t.getI()][t.getJ()].setColor(Color.GRAY);
+                            });
                     arrayWorld[i][j].setColor(Color.GRAY);
                 } else if (lifePoint == 2) {
                     // Рождаем нового
@@ -96,27 +102,20 @@ public class LifeWorld {
                             .stream()
                             .filter(t -> arrayWorld[t.getI()][t.getJ()].getColor() == Color.GRAY)
                             .findAny().get();
-                    System.out.printf("i = %d  j = %d  LIFE!\n", i, j);
                     arrayWorld[newLifePoint.getI()][newLifePoint.getJ()].setColor(Color.GREEN);
                 }
-                lifePoint = arrayWorld[i][j].getPointList()
-                        .stream()
-                        .filter(t -> arrayWorld[t.getI()][t.getJ()].getColor() == Color.GREEN)
-                        .peek(System.out::println)
-                        .count();
-                System.out.printf("i = %d  j = %d Кол - во живых = %d\n", i, j, lifePoint);
             }
         }
+        printWorld();
     }
 
     /**
-     * 
+     *
      */
     public void printWorld() {
         for (int i = 0; i < worldWigth; i++) {
-            for (int j = 0; j < worldHeigth; j++) {
-                System.out.printf("i = %d  j = %d point = %s\n", i, j, arrayWorld[i][j].getPointList());
-            }
+            String line = Stream.of(arrayWorld[i]).map(t -> t.getColor() == Color.GREEN ? "X" : "0").collect(Collectors.joining(" | ", " | ", " |"));
+            System.out.println(line);
         }
     }
 }
